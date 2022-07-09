@@ -22,7 +22,7 @@ module.exports = async function(city = '') {
         const data = await rp(options)
         const celsius = (data.main.temp - 32) * 5/9 // Формула келвины переводим в целсии
         return {
-            weather: `${data.name} ${celsius.toFixed(0)}`,
+            weather: `${data.name}: ${celsius.toFixed(0)} ℃`,
             error: null
         }
     } catch (error) {

@@ -9,15 +9,13 @@ app.use(express.static('public')) // указываем статический �
 app.use(bodyParser.urlencoded({extended: true})) // настройка плагина body-parser
 
 app.get('/',(request,response) => {
-    response.render('index')  // подключение веб-страницы
+    response.render('index', {weather: null, error: null})  // подключение веб-страницы
 })
 app.post('/', async (request,response) => { // обработка POST запроса
     const { city } = request.body
 
-   const {weather, error} = await weatherRequest(city)
-   console.log('Weather', weather);
-   console.log('Error', error)
-    response.render('index')
+    const {weather, error} = await weatherRequest(city)
+    response.render('index', {weather, error})
 })
 
 app.listen(3000, ()=> {
