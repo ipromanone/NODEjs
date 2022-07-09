@@ -1,5 +1,8 @@
 const express = require('express') // подключение плагина exspress server
 const bodyParser = require('body-parser') //  подключение плагина body-parser
+const weatherRequest = require('./requests/weather.request')
+
+// 69a59655bbe4d5fc82a38bc6f87eb48e
 
 const app = express() // вызов 
 
@@ -13,7 +16,7 @@ app.get('/', (request,response) => {
 app.post('/', (request,response) => { // обработка POST запроса
     const { city } = request.body
 
-    console.log(city)
+    weatherRequest(city)
     response.render('index')
 })
 
